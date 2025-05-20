@@ -5,6 +5,7 @@ import { Helmet } from "react-helmet";
 import { siteName } from '../utils/constants';
 import { useTranslation } from "react-i18next";
 import { useLoginModal } from '../hooks/useLoginModal';
+import { Hitokoto } from './hitokoto';
 
 type ThemeMode = 'light' | 'dark' | 'system';
 function Footer() {
@@ -91,6 +92,7 @@ function Footer() {
                         </Popup>
                     </>}
                 </p>
+                <Hitokoto />
                 <div className="w-fit-content inline-flex rounded-full border border-zinc-200 p-[3px] dark:border-zinc-700">
                     <ThemeButton mode='light' current={modeState} label="Toggle light mode" icon="ri-sun-line" onClick={setMode} />
                     <ThemeButton mode='system' current={modeState} label="Toggle system mode" icon="ri-computer-line" onClick={setMode} />
