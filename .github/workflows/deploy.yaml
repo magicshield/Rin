@@ -36,6 +36,12 @@ jobs:
           RIN_GITHUB_CLIENT_ID: ${{ secrets.RIN_GITHUB_CLIENT_ID }}
           RIN_GITHUB_CLIENT_SECRET: ${{ secrets.RIN_GITHUB_CLIENT_SECRET }}
 
+          NAME: ${{ vars.NAME }}
+          DESCRIPTION: ${{ vars.DESCRIPTION }}
+          AVATAR: ${{ vars.AVATAR }}
+          API_URL: ${{ vars.API_URL }}
+          PAGE_SIZE: ${{ vars.PAGE_SIZE }}
+          HITOKOTO_CATEGORY: ${{ vars.HITOKOTO_CATEGORY }}
           DB_NAME: ${{ vars.DB_NAME }}
           WORKER_NAME: ${{ vars.WORKER_NAME }}
           FRONTEND_URL: ${{ vars.FRONTEND_URL }}
@@ -52,4 +58,5 @@ jobs:
         run: |
           cd Rin/
           bun install --frozen-lockfile
+          bun b
           bun scripts/migrator.ts

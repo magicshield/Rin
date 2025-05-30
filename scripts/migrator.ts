@@ -15,6 +15,12 @@ function env(name: string, defaultValue?: string, required = false) {
 // must be defined
 const renv = (name: string, defaultValue?: string) => env(name, defaultValue, true)!
 
+const NAME = env("NAME", "")
+const DESCRIPTION = env("DESCRIPTION", "")
+const AVATAR = env("AVATAR", "")
+const API_URL = env("API_URL", "")
+const PAGE_SIZE = env("PAGE_SIZE", "5")
+const HITOKOTO_CATEGORY = env("HITOKOTO_CATEGORY", "")
 const DB_NAME = renv("DB_NAME", 'rin')
 const WORKER_NAME = renv("WORKER_NAME", 'rin-server')
 const FRONTEND_URL = env("FRONTEND_URL", "")
@@ -41,14 +47,23 @@ Bun.write('wrangler.toml', stripIndent(`
 #:schema node_modules/wrangler/config-schema.json
 name = "${WORKER_NAME}"
 main = "server/src/_worker.ts"
-compatibility_date = "2024-05-29"
-# compatibility_flags = ["nodejs_compat"]
-node_compat = true
+compatibility_date = "2025-05-05"
+compatibility_flags = ["nodejs_compat"]
 
 [triggers]
 crons = ["*/20 * * * *"]
 
+[assets]
+directory = "client/dist/"
+not_found_handling = "single-page-application"
+
 [vars]
+NAME = "${NAME}"
+DESCRIPTION = "${DESCRIPTION}"
+AVATAR = "${AVATAR}"
+API_URL = "${API_URL}"
+PAGE_SIZE = "${PAGE_SIZE}"
+HITOKOTO_CATEGORY = "${HITOKOTO_CATEGORY}"
 FRONTEND_URL = "${FRONTEND_URL}"
 S3_FOLDER = "${S3_FOLDER}"
 S3_CACHE_FOLDER="${S3_CACHE_FOLDER}"

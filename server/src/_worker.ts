@@ -27,7 +27,7 @@ export default {
             Container.set("client.config", new CacheImpl("client.config"));
         }
 
-        return await new Elysia({ aot: false })
+        return await new Elysia({ aot: false, prefix: "/api" })
             .use(app())
             .handle(request)
     },

@@ -62,6 +62,7 @@ function App() {
     ref.current = true
   }, [])
   const favicon = useMemo(() => config.get<string>("favicon"), [config])
+
   return (
     <>
       <ClientConfigContext.Provider value={config}>
@@ -143,6 +144,26 @@ function App() {
                 </TipsPage>
               )}
             </RouteMe>
+
+            <Route path="/api/user/github/callback">
+              {_ => {
+                fetch("/api/user/github/callback" + window.location.search, { redirect: "manual" }).then(({ status, headers }) => {
+                  console.log(status);
+                  console.log(headers);
+                })
+                return null
+              }}
+            </Route>
+
+            <Route path="/api/user/github">
+              {_ => {
+                fetch("/api/user/github" + window.location.search, { redirect: "manual" }).then(({ status, headers }) => {
+                  console.log(status);
+                  console.log(headers);
+                })
+                return null
+              }}
+            </Route>
 
             <RouteMe path="/*/user/github">
               {_ => (
